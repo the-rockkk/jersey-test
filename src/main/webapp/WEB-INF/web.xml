@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<servlet>
+		<description>TestServlet</description>
+		<display-name>TestServlet</display-name>
+		<servlet-name>TestServlet</servlet-name>
+		<servlet-class>com.gae.jersey.test.TestServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TestServlet</servlet-name>
+		<url-pattern>/test/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Jersey Servlet</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>com.gae.jersey.test.AppConfig</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>com.gae.jersey.test</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jersey.config.server.wadl.disableWadl</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jersey.config.server.tracing.type</param-name>
+			<param-value>ALL</param-value>
+		</init-param>
+		<!-- pass to next filter if Jersey/App returns 404 -->
+		<init-param>
+			<param-name>jersey.config.servlet.filter.forwardOn404</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Jersey Servlet</servlet-name>
+		<url-pattern>/jersey/*</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<description>Sample Servlet</description>
+		<display-name>Jersey_testServlet</display-name>
+		<servlet-name>Jersey_testServlet</servlet-name>
+		<servlet-class>com.example.myproject.Jersey_testServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Jersey_testServlet</servlet-name>
+		<url-pattern>/jersey_test</url-pattern>
+	</servlet-mapping>
+</web-app>
