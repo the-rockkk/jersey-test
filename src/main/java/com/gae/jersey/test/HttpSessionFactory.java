@@ -1,5 +1,7 @@
 package com.gae.jersey.test;
 
+import java.util.logging.Logger;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,8 @@ import org.glassfish.hk2.api.Factory;
  */
 public class HttpSessionFactory implements Factory<HttpSession> {
 
+	private static final Logger logger = Logger.getLogger(HttpSessionFactory.class.getName());
+
 	private final HttpServletRequest request;
 
 	/**
@@ -24,6 +28,7 @@ public class HttpSessionFactory implements Factory<HttpSession> {
 	 */
 	@Inject
 	public HttpSessionFactory(final HttpServletRequest request) {
+		logger.info("CTOR Called");
 		this.request = request;
 	}
 
@@ -43,6 +48,7 @@ public class HttpSessionFactory implements Factory<HttpSession> {
 	 */
 	@Override
 	public HttpSession provide() {
+		logger.info("provide Called");
 		return request.getSession();
 	}
 
