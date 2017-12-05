@@ -11,11 +11,8 @@
 	<h1>Jersey GAE Test</h1>
 
 	<fieldset>
-		<legend>Servlet Tests</legend>
+		<legend>Servlet, JSP, and Jersey Tests</legend>
 		<table>
-			<tr>
-				<td colspan="2" style="font-weight: bold;">Available Servlets:</td>
-			</tr>
 			<tr>
 				<td><a href='/test'>The test servlet</a></td>
 			</tr>
@@ -43,9 +40,6 @@
 		<legend>Email Tests</legend>
 		<table>
 			<tr>
-				<td colspan="2" style="font-weight: bold;">Available Servlets:</td>
-			</tr>
-			<tr>
 				<td><a href='/jersey/email/plain'>Test Plain Text Email
 						(Works)</a></td>
 			</tr>
@@ -55,14 +49,24 @@
 			</tr>
 			<tr>
 				<td><a href='/jersey/email/multipart'>Test HTML Email with
-						alternative plaintext "fallback" works
-				</a></td>
+						alternative plaintext "fallback" works </a></td>
 			</tr>
 			<tr>
-				<td><a href='/jersey/email/attachment'>Test HTML Email with attachment and
-						alternative plaintext "fallback" <span style="color: red">(FAILS)</span>
+				<td><a href='/jersey/email/attachment'>Test HTML Email with
+						attachment and alternative plaintext "fallback" <span
+						style="color: red">(FAILS)</span>
 				</a></td>
-			</tr>			
+			</tr>
+		</table>
+	</fieldset>
+
+	<hr />
+	<fieldset>
+		<legend>Other Tests</legend>
+		<table>
+			<tr>
+				<td><a href='/xlsxstreamtest.jsp'>XLSX Stream test</a></td>
+			</tr>
 		</table>
 	</fieldset>
 </body>

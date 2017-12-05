@@ -12,12 +12,11 @@
 	<properties>
 		<app.id>jerseytest-141215</app.id>
 		<app.version>1</app.version>
-		<appengine.version>1.9.42</appengine.version>
-		<gcloud.plugin.version>2.0.9.121.v20160815</gcloud.plugin.version>
+		<appengine.version>1.9.59</appengine.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
 		<archiveClasses>true</archiveClasses>
 
@@ -79,17 +78,18 @@
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<!-- if your container implements Servlet API older than 3.0, use "jersey-container-servlet-core" -->
 			<artifactId>jersey-container-servlet-core</artifactId>
-			<version>${jersey.version}</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-json-jackson</artifactId>
-			<version>${jersey.version}</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-jaxb</artifactId>
-			<version>${jersey.version}</version><!--$NO-MVN-MAN-VER$ -->
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-multipart</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.ext</groupId>
@@ -109,8 +109,29 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
+			<version>3.5</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.17</version>
+		</dependency>
+		<dependency>
+			<groupId>com.monitorjbl</groupId>
+			<artifactId>xlsx-streamer</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+
 		<!-- <dependency> <groupId>org.apache.commons</groupId> <artifactId>commons-email</artifactId> 
 			<version>1.4</version> </dependency> -->
 
@@ -147,7 +168,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -164,42 +184,7 @@
 					</webResources>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>com.google.appengine</groupId>
-				<artifactId>gcloud-maven-plugin</artifactId>
-				<version>${gcloud.plugin.version}</version>
-				<configuration>
-					<set_default>true</set_default>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 
-	<profiles>
-		<profile>
-			<id>gae</id>
-			<build>
-				<plugins>
-					<!-- move this to a profile to fix issue when refreshing project info 
-						from the pom: http://stackoverflow.com/questions/27364330/eclipse-nullpointer-exception-for-modulare-maven-project-update -->
-					<plugin>
-						<groupId>com.google.appengine</groupId>
-						<artifactId>appengine-maven-plugin</artifactId>
-						<version>${appengine.version}</version>
-						<configuration>
-							<enableJarClasses>false</enableJarClasses>
-							<version>${app.version}</version>
-							<!-- Comment in the below snippet to bind to all IPs instead of just 
-								localhost -->
-							<!-- address>0.0.0.0</address> <port>8080</port -->
-							<!-- Comment in the below snippet to enable local debugging with a 
-								remote debugger like those included with Eclipse or IntelliJ -->
-							<!-- jvmFlags> <jvmFlag>-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n</jvmFlag> 
-								</jvmFlags -->
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>
